@@ -55,11 +55,14 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
     services:
-      postgres:
+      db:
         image: postgres:11
-        ports: ["5432:5432"]
         env:
           POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: rails_hotwire_base_test
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -100,20 +103,28 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
-      - name: Set up PostgreSQL
+    - name: Install PostgreSQL 11 client
         run: |
           sudo apt-get -yqq install libpq-dev
-          sudo service postgresql start
-      - name: Create database
-        run: |
-          bundler exec rails db:create RAILS_ENV=test
-          bundler exec rails db:migrate RAILS_ENV=test
-      - name: Run Tests
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Setup Database
         env:
           PGHOST: localhost
           PGUSER: postgres
+          PGPASSWORD: postgres
           RAILS_ENV: test
-        run: bundler exec rake
+        run: |
+          bundle exec rails db:setup
+    - name: Run tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rspec
       - name: Upload coverage results    
         uses: actions/upload-artifact@master
         if: always()
