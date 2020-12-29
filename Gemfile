@@ -49,6 +49,8 @@ group :development, :test do
 end
 
 group :development do
+  # Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+  gem 'annotate', '~> 3.1', '>= 3.1.1'
   # Brakeman is a static analysis tool which checks Ruby on Rails applications
   # for security vulnerabilities.
   gem 'brakeman', '~> 4.10', '>= 4.10.1'
