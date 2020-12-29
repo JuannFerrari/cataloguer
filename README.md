@@ -1,4 +1,5 @@
 ![main CI](https://github.com/JuannFerrari/cataloguer/workflows/CI/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/JuannFerrari/cataloguer/branch/main/graph/badge.svg?token=0QTC5EGHDJ)](https://codecov.io/gh/JuannFerrari/cataloguer)
 # README
 
 This README would normally document whatever steps are necessary to get the
