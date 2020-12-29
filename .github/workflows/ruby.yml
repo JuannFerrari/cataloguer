@@ -57,11 +57,14 @@ jobs:
     services:
       postgres:
         image: postgres:11
-        env:
-          POSTGRES_USER: cataloguer
-          POSTGRES_DB: cataloguer_test
-          POSTGRES_PASSWORD: ""
         ports: ["5432:5432"]
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -80,11 +83,10 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 10.13.0
+          node-version: 15.5.0
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -98,14 +100,23 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
-
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: myapp
+      - name: Set up PostgreSQL
         run: |
-          bin/rails db:setup
-
-      - name: Run tests
-        run: bundle exec rspec
+          sudo apt-get -yqq install libpq-dev
+          sudo service postgresql start
+      - name: Create database
+        run: |
+          bundler exec rails db:create RAILS_ENV=test
+          bundler exec rails db:migrate RAILS_ENV=test
+      - name: Run Tests
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          RAILS_ENV: test
+        run: bundler exec rake
+      - name: Upload coverage results    
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage
