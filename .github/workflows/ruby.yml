@@ -103,13 +103,13 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
-    - name: Install PostgreSQL 11 client
+      - name: Install PostgreSQL 11 client
         run: |
           sudo apt-get -yqq install libpq-dev
-    - name: Install dependencies
-      run: bundle install
+      - name: Install dependencies
+        run: bundle install
 
-    - name: Setup Database
+      - name: Setup Database
         env:
           PGHOST: localhost
           PGUSER: postgres
@@ -117,17 +117,17 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails db:setup
-    - name: Run tests
-      env:
-        PGHOST: localhost
-        PGUSER: postgres
-        PGPASSWORD: postgres
-        RAILS_ENV: test
-      run: |
-        bundle exec rspec
-      - name: Upload coverage results    
-        uses: actions/upload-artifact@master
-        if: always()
+      - name: Run tests
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
+        run: |
+          bundle exec rspec
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v1
         with:
-          name: coverage-report
-          path: coverage
+          file: ./coverage/.resultset.json
+          name: ${{ runner.os }}-${{ matrix.ruby }}-frozen_string_literal-${{ matrix.frozen_string_literal }}
+          fail_ci_if_error: true

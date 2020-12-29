@@ -16,6 +16,8 @@ Layout/LineLength:
     - config/environments/production.rb
     - config/initializers/devise.rb
     - db/migrate/20201228222132_devise_create_admin_users.rb
+    - config/initializers/pagy.rb
+    - db/migrate/20201229231852_create_delayed_jobs.rb
 
 Metrics/BlockLength:
   Exclude:
