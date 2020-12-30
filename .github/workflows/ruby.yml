@@ -128,6 +128,5 @@ jobs:
       - name: Upload coverage report
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage/.resultset.json
-          name: ${{ runner.os }}-${{ matrix.ruby }}-frozen_string_literal-${{ matrix.frozen_string_literal }}
+          file: ./coverage
           fail_ci_if_error: true
