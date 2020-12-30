@@ -91,6 +91,8 @@ end
 group :test do
   # Adds support for Capybara system testing
   gem 'capybara', '>= 3.26'
+  # Hosted code coverage Ruby reporter.
+  gem 'codecov', '~> 0.2.15', require: false
   # To easily generate fake data
   gem 'faker', '~> 2.15', '>= 2.15.1'
   # Adds support for selenium driver
@@ -98,7 +100,7 @@ group :test do
   # Provides RSpec- and Minitest-compatible one-liners to test common Rails functionality
   gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
   # Code coverage for Ruby
-  gem 'simplecov', '~> 0.20.0'
+  gem 'simplecov', '~> 0.20.0', require: false
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   # WebMock allows stubbing HTTP requests and setting expectations on HTTP requests.
