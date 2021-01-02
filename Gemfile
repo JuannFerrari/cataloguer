@@ -13,6 +13,8 @@ gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 # Adds an object-oriented layer of presentation logic to your Rails apps.
 gem 'draper', '~> 4.0', '>= 4.0.1'
+# HTTP/REST API client library.
+gem 'faraday', '~> 1.3'
 # Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
 gem 'figaro', '~> 1.2'
 # Use Hotwire to make the app feel like an SPA

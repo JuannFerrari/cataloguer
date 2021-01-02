@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_231852) do
+ActiveRecord::Schema.define(version: 2021_01_02_031944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,30 @@ ActiveRecord::Schema.define(version: 2020_12_29_231852) do
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "year", null: false
+    t.string "rated"
+    t.string "released_at"
+    t.string "runtime"
+    t.string "genre"
+    t.string "director"
+    t.string "writer"
+    t.string "actors"
+    t.string "plot"
+    t.string "language"
+    t.string "country"
+    t.string "awards"
+    t.string "poster"
+    t.string "imdb_rating"
+    t.string "metascore"
+    t.string "imdb_id", null: false
+    t.string "my_score", null: false
+    t.date "viewed_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
