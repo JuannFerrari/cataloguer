@@ -50,6 +50,7 @@ jobs:
       - name: Run Code Quality checks
         run: |
           bundle exec rake code_analysis
+          yarn lint
 
   tests:
     name: Tests
