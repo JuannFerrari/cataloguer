@@ -1,5 +1,5 @@
 <%= form_with do |f| %>
   <div class="form-group" data-controller='select2' data-select2-url-value='<%= search_admin_movies_path %>'>
-    <%= f.select :imdb_id, {}, {include_blank: 'Select a movie'}, class: 'form-control content-search' %>
+    <%= f.select :imdb_id, {}, {include_blank: 'Select a movie'}, class: 'form-control', data: {select2_target: 'contentSearch'}%>
   </div>
 <% end %>
