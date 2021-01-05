@@ -1,11 +1,12 @@
 module Admin
   class OmdbService < BaseService
-    def self.call(search_term)
-      new(search_term).send(:search_movie)
+    def self.call(search_term, search_year)
+      new(search_term, search_year).send(:search_movie)
     end
 
-    def initialize(search_term)
+    def initialize(search_term, search_year)
       params = { t: search_term,
+                 y: search_year,
                  plot: 'full',
                  apikey: ENV['OMDB_API']
                }

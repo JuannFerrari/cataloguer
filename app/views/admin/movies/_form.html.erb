@@ -1,5 +1,79 @@
-<%= form_with do |f| %>
-  <div class="form-group" data-controller='select2' data-select2-url-value='<%= search_admin_movies_path %>'>
-    <%= f.select :imdb_id, {}, {include_blank: 'Select a movie'}, class: 'form-control', data: {select2_target: 'contentSearch'}%>
+<%= form_with(url: admin_movies_path, model: movie, id: 'movie-form', class: 'form') do |f| %>
+  <div class='form__container w-75'>
+    <div class='form__field'>
+      <%= f.label :title, class: 'form__label' %>
+      <%= f.text_field :title, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :year, class: 'form__label' %>
+      <%= f.text_field :year, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :director, class: 'form__label' %>
+      <%= f.text_field :director, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :genre, class: 'form__label' %>
+      <%= f.text_field :genre, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :actors, class: 'form__label' %>
+      <%= f.text_field :actors, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :language, class: 'form__label' %>
+      <%= f.text_field :language, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :country, class: 'form__label' %>
+      <%= f.text_field :country, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :writer, class: 'form__label' %>
+      <%= f.text_field :writer, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :plot, class: 'form__label' %>
+      <%= f.text_field :plot, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :awards, class: 'form__label' %>
+      <%= f.text_field :awards, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :runtime, class: 'form__label' %>
+      <%= f.text_field :runtime, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :released_at, class: 'form__label' %>
+      <%= f.text_field :released_at, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :rated, class: 'form__label' %>
+      <%= f.text_field :rated, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :metascore, class: 'form__label' %>
+      <%= f.text_field :metascore, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :imdb_id, class: 'form__label' %>
+      <%= f.text_field :imdb_id, readonly: true, class: 'form__input form__input--readonly' %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :my_score, class: 'form__label' %>
+      <%= f.text_field :my_score %>
+    </div>
+    <div class='form__field'>
+      <%= f.label :viewed_at, class: 'form__label' %>
+      <%= f.date_field :viewed_at %>
+    </div>
   </div>
-<% end %>
+  <div class='form__container w-25'>
+    <div class='form__field form__field--full'>
+      <%= f.label :poster, class: 'form__label' %>
+      <img src="<%= movie.poster %>" class="img-fluid">
+    </div>
+  </div>
+<%end%>
+
