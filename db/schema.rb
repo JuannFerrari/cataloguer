@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_031944) do
     t.string "title", null: false
     t.string "year", null: false
     t.string "rated"
-    t.string "released_at"
+    t.date "released"
     t.string "runtime"
     t.string "genre"
     t.string "director"
@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 2021_01_02_031944) do
     t.string "country"
     t.string "awards"
     t.string "poster"
-    t.string "imdb_rating"
-    t.string "metascore"
-    t.string "imdb_id", null: false
-    t.string "my_score", null: false
+    t.float "imdbrating", default: 0.0
+    t.integer "metascore", default: 0
+    t.string "imdbid", null: false
+    t.float "my_score", null: false
     t.date "viewed_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
