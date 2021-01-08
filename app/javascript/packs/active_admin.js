@@ -7,6 +7,6 @@ import '@activeadmin/activeadmin';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'arctic_admin';
 
-import "@hotwired/turbo-rails";
-import "../channels";
-import "../controllers";
+import '@hotwired/turbo-rails';
+import '../channels';
+import '../controllers';

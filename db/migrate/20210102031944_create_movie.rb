@@ -20,7 +20,8 @@ class CreateMovie < ActiveRecord::Migration[6.1]
       t.string  :imdbid, null: false
 
       t.float   :my_score, null: false
-      t.date    :viewed_at, null: false
+      t.string  :month_viewed, null: false
+      t.string  :year_viewed, null: false
 
       t.timestamps
     end

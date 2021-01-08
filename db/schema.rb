@@ -61,7 +61,8 @@ ActiveRecord::Schema.define(version: 2021_01_02_031944) do
     t.integer "metascore", default: 0
     t.string "imdbid", null: false
     t.float "my_score", null: false
-    t.date "viewed_at", null: false
+    t.string "month_viewed", null: false
+    t.string "year_viewed", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
