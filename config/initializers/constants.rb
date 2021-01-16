@@ -1,0 +1,20 @@
+MOVIE_PERMITTED_PARAMS = %w[title
+                            year
+                            rated
+                            released
+                            runtime
+                            genre
+                            director
+                            writer
+                            actors
+                            plot
+                            language
+                            country
+                            awards
+                            poster
+                            imdbrating
+                            metascore
+                            imdbid
+                            my_score
+                            month_viewed
+                            year_viewed].freeze

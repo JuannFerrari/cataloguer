@@ -1,9 +1,8 @@
-PERMITTED_PARAMS = (Movie.attribute_names - %w[id created_at updated_at]).freeze
-
 ActiveAdmin.register Movie do
-  permit_params PERMITTED_PARAMS
+  permit_params MOVIE_PERMITTED_PARAMS
 
   form partial: 'base_form'
+
   show do
     attributes_table do
       row :id
@@ -74,7 +73,7 @@ ActiveAdmin.register Movie do
   end
 
   collection_action :build, method: :post do
-    movie = Movie.new(JSON.parse(params[:imdb_data]).slice(*PERMITTED_PARAMS))
+    movie = Movie.new(JSON.parse(params[:imdb_data]).slice(*MOVIE_PERMITTED_PARAMS))
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace('movie-form', partial: 'admin/movies/form',
