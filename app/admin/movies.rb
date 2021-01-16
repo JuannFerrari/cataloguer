@@ -1,16 +1,56 @@
 PERMITTED_PARAMS = (Movie.attribute_names - %w[id created_at updated_at]).freeze
 
 ActiveAdmin.register Movie do
-  form partial: 'base_form'
   permit_params PERMITTED_PARAMS
+
+  form partial: 'base_form'
+  show do
+    attributes_table do
+      row :id
+      row :imdbid
+      row :title
+      row :year
+      row :runtime
+      row :released
+      row :director
+      row :writer
+      row :language
+      row :country
+      row :genre
+      row :rated
+      row :imdbrating
+      row :metascore
+      row :awards
+      row :actors
+      row :plot
+
+      panel 'My Info' do
+        table_for movie do
+          column :my_score
+          column :month_viewed
+          column :year_viewed
+        end
+      end
+    end
+  end
+
+  sidebar 'Poster', only: :show do
+    table_for movie do
+      column do |ad|
+        image_tag ad.poster
+      end
+    end
+  end
 
   index do
     id_column
     column :title
     column :year
     column :imdbrating
-    column :my_score
     column :director
+    column :my_score
+    column :month_viewed
+    column :year_viewed
     actions
   end
 
@@ -38,7 +78,10 @@ ActiveAdmin.register Movie do
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace('movie-form', partial: 'admin/movies/form',
-                                                                locals: { movie: movie })
+                                                                locals: {
+                                                                  movie: movie,
+                                                                  url: admin_movies_path
+                                                                })
       end
     end
   end
@@ -52,7 +95,10 @@ ActiveAdmin.register Movie do
         respond_to do |format|
           format.turbo_stream do
             render turbo_stream: turbo_stream.replace('movie-form', partial: 'admin/movies/form',
-                                                                    locals: { movie: movie })
+                                                                    locals: {
+                                                                      movie: movie,
+                                                                      url: admin_movies_path
+                                                                    })
           end
         end
       end
