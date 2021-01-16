@@ -3,9 +3,12 @@ import {
 } from 'stimulus';
 import $ from 'jquery';
 
+// eslint-disable-next-line no-unused-vars
 import Select2 from 'select2';
 
+// eslint-disable-next-line import/no-unresolved
 require('select2/dist/css/select2');
+// eslint-disable-next-line import/no-unresolved
 require('select2-bootstrap-theme/dist/select2-bootstrap');
 
 export default class extends Controller {
@@ -31,16 +34,19 @@ export default class extends Controller {
         },
         processResults(data) {
           return {
-            results: [{
-              id: JSON.stringify(data),
-              text: data.title,
-            }],
+            results: [
+              {
+                id: JSON.stringify(data),
+                text: data.title,
+              },
+            ],
           };
         },
       },
       minimumInputLength: 3,
     });
 
+    // eslint-disable-next-line func-names
     $(this.contentSearchTarget).on('select2:select', function () {
       const event = new Event('change');
       this.dispatchEvent(event);
