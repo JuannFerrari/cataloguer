@@ -1,0 +1,17 @@
+<% if @movie.persisted? %>
+  <%= render 'form', movie: @movie , url: admin_movie_path(@movie) %>
+<% else %>
+  <%= form_with url: build_admin_movies_path, class: 'form' do |f| %>
+    <div data-controller='movie' data-movie-url-value='<%= search_admin_movies_path %>'>
+      <div class='form__field form__field--full'>
+        <%= f.label :imdb_data, 'Search a Movie (Name* - Year)', class: 'form__label' %>
+        <%= f.select :imdb_data, {}, {include_blank: 'Select a movie'}, class: 'form__select', data: {movie_target: 'contentSearch', action: 'movie#submitForm'}%>
+        <p class='form__subtitle'>Example: (Mulan - 2020)</p>
+        <p class='form__subtitle'>*Required</p>
+      </div>
+      <%= f.submit 'Send', class: 'form__submit form__submit--hidden', data: {movie_target: 'submit', disable_with: false} %>
+    </div>
+  <% end %>
+
+  <div id='movie-form'></div>
+<% end %>

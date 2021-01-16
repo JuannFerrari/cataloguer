@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  admin:
+    form:
+      select_month: 'Select month'
+      error: 'error'
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+  activerecord: 
+    attributes:
+      movie:
+        imdbid: "IMDB External ID"

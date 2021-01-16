@@ -22,3 +22,7 @@ Layout/LineLength:
 Metrics/BlockLength:
   Exclude:
     - lib/tasks/auto_annotate_models.rake
+
+Rails/OutputSafety:
+  Exclude:
+    - config/environment.rb
