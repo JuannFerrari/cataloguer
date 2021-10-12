@@ -24,7 +24,7 @@ gem 'pg', '~> 1.1'
 # Object oriented authorization for Rails applications
 gem 'pundit', '~> 2.1'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
